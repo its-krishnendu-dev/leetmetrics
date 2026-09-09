@@ -15,6 +15,14 @@ Enter a LeetCode username to view solved problems by difficulty and submission s
 - Dynamic cards generated with JavaScript
 - Fetches data using LeetCode GraphQL
 
+---
+
+## 🖥️ Preview
+
+<p align="center">
+  <img src="assets/leetmatrix.png" alt="LeetMetrics Preview" width="850">
+</p>
+---
 ## 🛠️ Technologies Used
 
 - HTML5
