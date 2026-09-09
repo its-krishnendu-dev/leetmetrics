@@ -1,149 +1,7 @@
-// document.addEventListener('DOMContentLoaded',function(){
-
-//     const searchButton = document.getElementById('search_btn');
-//     const usernameInput = document.getElementById('user_input');
-//     const statsContainer = document.querySelector('.stats_container');
-
-//     const easyProgressCircle = document.querySelector('.easy_progress');
-//     const mediumProgressCircle = document.querySelector('.medium_progress');
-//     const hardProgressCircle = document.querySelector('.hard_progress');
-
-//     const easyLabel = document.getElementById('easy_label');
-//     const mediumLabel = document.getElementById('medium_label');
-//     const hardLabel = document.getElementById('hard_label');
-
-//     const statsCardContainer = document.querySelector('.stats_cards');
-
-
-//     // return true or false based on a regulae expression
-//     function validateUsername(username){
-//         if(username.trim() === ''){
-//             alert('Username should not be empty');
-//             return false;
-//         }
-//         const regex = /^[a-zA-Z0-9]+$/;
-//         const isMatching = regex.test(username);
-//         if(!isMatching){
-//             alert('Invalid Username');
-//         }
-//         return isMatching;
-
-//     }
-
-//     async function fetchUserDetails (username){
-
-//         try{
-//             searchButton.textContent = 'Searching....';
-//             searchButton.disabled = true;
-
-//             // const responce = await fetch(url);
-//              const proxyUrl = 'https://cors-anywhere.herokuapp.com/' 
-//             const targetUrl = 'https://leetcode.com/graphql/';
-//             const myHeaders = new Headers();
-//             myHeaders.append('content-type','application/json');
-//              const graphql = JSON.stringify({
-//                 query: "\n    query userSessionProgress($username: String!) {\n  allQuestionsCount {\n    difficulty\n    count\n  }\n  matchedUser(username: $username) {\n    submitStats {\n      acSubmissionNum {\n        difficulty\n        count\n        submissions\n      }\n      totalSubmissionNum {\n        difficulty\n        count\n        submissions\n      }\n    }\n  }\n}\n    ",
-//                 variables: { "username": `${username}` }
-//             })
-
-//         const requestOptions = {
-//             method: 'POST',
-//             headers: myHeaders,
-//             body: graphql,
-//             redirect:'follow'
-//         };
-
-//         const response = await fetch(proxyUrl+targetUrl, requestOptions);
-
-//             if(!response.ok){
-//                 throw new Error('Unable to fetch the User Details');
-//             }
-//             const parsedata = await response.json();
-//             console.log('Logging Data:',parsedata);
-
-//             displayUserData(parsedata);
-//         }
-
-//         catch(error){
-//             statsContainer.innerHTML = `<p>${error.message}</p>`
-//         }
-//         finally{
-//             searchButton.textContent = 'Search';
-//             searchButton.disabled = false;
-//         }
-
-//     }
-
-
-//     function updateProgress(solved,total,label,circle){
-//         const prgressDegree = (solved/total)*100;
-//         circle.style.setProperty('--progress-degree',`${prgressDegree}%`);
-//         label.textContent = `${solved}/${total}`;
-//     }
-
-//     function displayUserData(parsedata){
-//         const totalQues = parsedata.data.allQuestionsCount[0].count;
-//         const totalEasyQues = parsedata.data.allQuestionsCount[1].count;
-//         const totalMediumQues = parsedata.data.allQuestionsCount[2].count;
-//         const totalHardQues = parsedata.data.allQuestionsCount[3].count;
-
-//         const solveTotalQues = parsedata.data.matchedUser.submitStats.acSubmissionNum[0].count;
-//         const solveTotalEasyQues = parsedata.data.matchedUser.submitStats.acSubmissionNum[1].count;
-//         const solveTotalMediumQues = parsedata.data.matchedUser.submitStats.acSubmissionNum[2].count;
-//         const solveTotalHardQues = parsedata.data.matchedUser.submitStats.acSubmissionNum[3].count;
-
-//         updateProgress(solveTotalEasyQues,totalEasyQues,easyLabel,easyProgressCircle);
-//         updateProgress(solveTotalMediumQues,totalMediumQues,mediumLabel,mediumProgressCircle);
-//         updateProgress(solveTotalHardQues,totalHardQues,hardLabel,hardProgressCircle);
-
-//         const cardsData = [
-           
-//             {
-//                 label: 'Overall Submission',value:parsedata.data.matchedUser.submitStats.totalSubmissionNum[0].submissions
-//             },
-//             {
-//                 label: 'Overall Easy Submission',value:parsedata.data.matchedUser.submitStats.totalSubmissionNum[1].submissions
-//             },
-//             {
-//                 label: 'Overall Medium Submission',value:parsedata.data.matchedUser.submitStats.totalSubmissionNum[2].submissions
-//             },
-//             {
-//                 label: 'Overall Hard Submission',value:parsedata.data.matchedUser.submitStats.totalSubmissionNum[3].submissions
-//             },
-//         ]
-
-//         console.log('Card Data: ',cardsData);
-
-//         statsCardContainer.innerHTML = cardsData.map(
-//             data => 
-//                     `<div class="card">
-//                     <h4>${data.label}</h4>
-//                     <p>${data.value}</p>
-//                     </div>`
-//         ).join('')
-
-//     }
-
-//     searchButton.addEventListener('click',function(){
-//         const  username = usernameInput.value;
-//         console.log('Loggin Username :',username);
-//         if(validateUsername(username)){
-//             fetchUserDetails(username);
-//         }
-//     })
-
-
-
-// });
-
-
 // Wait until the complete HTML document is loaded
 document.addEventListener('DOMContentLoaded', function () {
-
-    // =========================================================
     // 1. GET HTML ELEMENTS
-    // =========================================================
-
+   
     // Search button
     const searchButton = document.getElementById('search_btn');
 
@@ -165,11 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Container where submission cards will be displayed
     const statsCardContainer = document.querySelector('.stats_cards');
-
-
-    // =========================================================
+           
     // 2. VALIDATE USERNAME
-    // =========================================================
 
     // This function checks whether the username is valid
     // Returns true or false
@@ -196,11 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Return true if valid, false if invalid
         return isMatching;
     }
-
-
-    // =========================================================
+   
     // 3. FETCH LEETCODE USER DATA
-    // =========================================================
 
     async function fetchUserDetails(username) {
 
@@ -283,11 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
 
-
-            // -------------------------------------------------
             // Fetch request options
-            // -------------------------------------------------
-
             const requestOptions = {
 
                 // HTTP method
@@ -364,10 +212,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-
-    // =========================================================
     // 6. UPDATE PROGRESS CIRCLE
-    // =========================================================
 
     function updateProgress(
         solved,
@@ -404,10 +249,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    // =========================================================
     // 7. DISPLAY USER DATA
-    // =========================================================
-
+  
     function displayUserData(parsedata) {
 
         // -----------------------------------------------------
@@ -485,11 +328,8 @@ document.addEventListener('DOMContentLoaded', function () {
             hardLabel,
             hardProgressCircle
         );
-
-
-        // =====================================================
+      
         // 8. CREATE CARD DATA
-        // =====================================================
 
         // Store card information inside an array
         const cardsData = [
@@ -535,10 +375,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Check card data in console
         console.log('Card Data:', cardsData);
 
-
-        // =====================================================
         // 9. DISPLAY CARDS ON THE WEBPAGE
-        // =====================================================
 
         // Convert every object in cardsData into HTML
         //
@@ -560,11 +397,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ).join('');
     }
 
-
-    // =========================================================
     // 10. SEARCH BUTTON EVENT
-    // =========================================================
-
     searchButton.addEventListener(
         'click',
         function () {
